@@ -2,7 +2,7 @@ import pygame
 import robomaster
 import cv2
 from config import W_WIDTH, W_HEIGHT
-from ..decorator import check_key
+from decorator import check_key
 
 
 class Camera:
@@ -28,10 +28,13 @@ class Camera:
         surface = pygame.image.frombuffer(frame.tobytes(), (1280, 720), "RGB")
         surface = pygame.transform.scale(surface, (W_WIDTH, W_HEIGHT))
         self.screen.blit(surface, (0, 0))
+        return True
 
     @check_key
     def reset_camera(self):
+        '''重置云台摄像头至车体中心位置'''
         self.gi.recenter()
 
-    def move_camera(self):
-        pass
+    @check_key
+    def move_camera_up(self):
+        self.gi.drive_speed(5, 0)

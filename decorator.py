@@ -4,13 +4,11 @@ import config
 
 
 def check_key(func):
-    def warpper(*args, **kwargs):
+    def wrapper(self, *args, **kwargs):
         func_name = func.__name__
         bt = config.keyword_bind[func_name]
         bt_id = key.key_code(bt)
         if config.keys[bt_id]:
-            print(func_name, bt, bt_id)
-            return func()
-        return None
+            return func(self, *args, **kwargs)
 
-    return warpper
+    return wrapper

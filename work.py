@@ -1,5 +1,5 @@
 from file.camera import Camera
-from decorator import check_key
+from test import Test
 
 
 class Work:
@@ -9,7 +9,7 @@ class Work:
         self.screen = screen
 
         self.create_camera()
-        self.key = Key()
+        self.test = Test()
 
     def create_camera(self):
         self.camera = Camera(self.robot, self.screen)
@@ -19,3 +19,5 @@ class Work:
         机甲大师 ep 所要运行的所有功能
         '''
         self.camera.show()
+        self.camera.reset_camera()
+        self.camera.move_camera_up()
