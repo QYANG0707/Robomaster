@@ -22,8 +22,8 @@ if __name__ == "__main__":
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    pygame.quit()
                     rbt.close()
+                    pygame.quit()
                     exit()
 
         pygame.display.flip()

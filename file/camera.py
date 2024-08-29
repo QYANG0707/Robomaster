@@ -1,8 +1,10 @@
 import pygame
 import robomaster
 import cv2
-from config import W_WIDTH, W_HEIGHT
-from decorator import check_key
+import config
+from config import W_WIDTH, W_HEIGHT, keys
+from decorator import check_key_down
+from pygame import key
 
 
 class Camera:
@@ -17,6 +19,8 @@ class Camera:
         self.gi = robomaster.gimbal.Gimbal(robot)
 
         self.screen = screen
+        self.camera_speed = config.CAMERA_SPEED
+        self.camera_speed_scale = 100
 
     def show(self):
         """
@@ -30,11 +34,36 @@ class Camera:
         self.screen.blit(surface, (0, 0))
         return True
 
-    @check_key
+    @check_key_down
     def reset_camera(self):
         '''重置云台摄像头至车体中心位置'''
-        self.gi.recenter()
+        if not self.gi._action_dispatcher.has_in_progress_actions:
+            self.gi.recenter()
 
-    @check_key
-    def move_camera_up(self):
-        self.gi.drive_speed(5, 0)
+    def move_camera(self):
+        func_name = 'move_camera'
+        bt_list = [config.keys[key.key_code(i)] for i in config.keyword_bind[func_name]]
+        if bt_list[0]:
+            up_down = self.camera_speed * self.camera_speed_scale / 100
+        elif bt_list[1]:
+            up_down = self.camera_speed * -1 * self.camera_speed_scale / 100
+        else:
+            up_down = 0
+
+        if bt_list[2]:
+            left_right = self.camera_speed * -1 * self.camera_speed_scale / 100
+        elif bt_list[3]:
+            left_right = self.camera_speed * self.camera_speed_scale / 100
+        else:
+            left_right = 0
+        self.gi.drive_speed(up_down, left_right)
+
+    @check_key_down
+    def more_camera_speed(self):
+        if self.camera_speed_scale < 100:
+            self.camera_speed_scale += 1
+
+    @check_key_down
+    def less_camera_speed(self):
+        if self.camera_speed_scale > 1:
+            self.camera_speed_scale -= 1
