@@ -62,3 +62,7 @@ class Wheel:
     # def less_camera_speed(self):
     #     if self.camera_speed_scale > 1:
     #         self.camera_speed_scale -= 1
+
+
+
+    
