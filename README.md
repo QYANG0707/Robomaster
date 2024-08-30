@@ -1,4 +1,4 @@
-# RoboMaster by Pygame
+# RoboMaster by Pygame 未完成...
 
 基于pygame库的机甲大师控制系统
 
