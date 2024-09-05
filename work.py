@@ -1,4 +1,9 @@
+'''
+机甲大师 ep 所要执行的全部任务
+'''
 from file.camera import Camera
+from file.info import Info
+from file.wheel import Wheel
 from test import Test
 
 
@@ -8,11 +13,12 @@ class Work:
         self.robot = robot
         self.screen = screen
 
-        self.create_camera()
+        self.camera = Camera(robot, screen)
         self.test = Test()
 
-    def create_camera(self):
-        self.camera = Camera(self.robot, self.screen)
+        self.info = Info(robot, self.camera, screen)
+
+        self.wheel = Wheel(robot)
 
     def run(self):
         '''
@@ -20,4 +26,10 @@ class Work:
         '''
         self.camera.show()
         self.camera.reset_camera()
-        self.camera.move_camera_up()
+        self.camera.move_camera()
+        self.camera.more_camera_speed()
+        self.camera.less_camera_speed()
+
+        self.info.info_blit()
+
+        self.wheel.move_wheel()

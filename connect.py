@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     helper = conn.ConnectionHelper()
 
-    ssid = 'APPLELEGO'
+    ssid = 'LEGO'
     info = helper.build_qrcode_string(ssid=ssid, password=WIFI[ssid])
 
     myqr.run(words=info)
