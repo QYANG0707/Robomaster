@@ -16,10 +16,11 @@ WIFI = {
     'APPLELEGO': '2.718281'
 }
 
-
 keyword_bind = {
     'info_blit': 'tab',  # 显示信息
+    'switch_gesture_recogntion': 'h',
     'reset_camera': 'r',  # 重置云台摄像头至车体中心位置
+    'rotation': 'n',
     'move_camera': ['up', 'down', 'left', 'right'],  # 移动摄像头
     'more_camera_speed': 'page up',  # 增加摄像头移动灵敏度
     'less_camera_speed': 'page down',  # 降低摄像头移动灵敏度
