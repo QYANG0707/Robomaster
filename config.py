@@ -10,10 +10,9 @@ WHEEL_SPEED = 100  # 麦克纳姆轮基础移动速度
 
 FONT_SIZE = 20  # 信息显示时的字体大小
 
-WIFI = {
-    'LEGO': '3.1415926',
-    'LEPEN': '82202257',
-    'APPLELEGO': '2.718281'
+WIFI = {#配置可连接的wifi名称和密码
+    'wifi名称1':'密码',
+    'wifi名称2':'密码'
 }
 
 keyword_bind = {
